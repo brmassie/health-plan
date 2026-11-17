@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Health">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F4F1EA">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#121110">
+  <meta name="description" content="Weekly training, a 14-day sleep reset, and research-backed habits for general health and longevity.">
+  <title>Health Plan</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-text">
+      <h1>Health Plan</h1>
+      <p class="today-date" id="header-date"></p>
+    </div>
+    <button type="button" class="icon-btn" id="settings-btn" aria-label="Settings">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="3"></circle>
+        <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"></path>
+      </svg>
+    </button>
+  </header>
+
+  <main id="app">
+    <noscript>
+      <div class="noscript card">This plan needs JavaScript turned on. Once it is, you can use it offline after the first visit.</div>
+    </noscript>
+  </main>
+
+  <nav class="tabbar" aria-label="Main">
+    <button type="button" class="tab" data-tab="today" aria-current="page">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+      Today
+    </button>
+    <button type="button" class="tab" data-tab="sleep">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 14.5A8.5 8.5 0 1 1 9.5 3 7 7 0 0 0 21 14.5z"></path></svg>
+      Sleep reset
+    </button>
+    <button type="button" class="tab" data-tab="week">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="3"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>
+      Week
+    </button>
+    <button type="button" class="tab" data-tab="guide">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+      Guide
+    </button>
+  </nav>
+
+  <div class="overlay" id="settings-overlay" hidden>
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+      <div class="sheet-handle" aria-hidden="true"></div>
+      <h2 id="settings-title">Settings</h2>
+      <form id="settings-form">
+        <div class="field">
+          <label for="weight-input">Body weight (kg)</label>
+          <input id="weight-input" name="weight" type="number" inputmode="decimal" min="40" max="250" step="0.5" required>
+          <p class="hint" id="protein-hint"></p>
+        </div>
+        <div class="field">
+          <label for="start-input">Sleep reset start date</label>
+          <input id="start-input" name="start" type="date" required>
+          <p class="hint">The 14-day table is built on a current sleep of about 1:00–9:30 AM. Start the alarm 30–60 minutes earlier than your current wake-up if that assumption is off, or pick a start date that matches when you begin.</p>
+        </div>
+        <button type="submit" class="primary-btn">Save</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>
